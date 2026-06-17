@@ -1,3 +1,11 @@
+---
+title: AI Fruit Classifier
+emoji: 🍓
+colorFrom: purple
+colorTo: blue
+sdk: docker
+pinned: false
+---
 # Fruit Classifier Web App
 
 Aplikasi web berbasis AI untuk memenuhi tugas kuliah "Penerapan Convolutional Neural Networks (CNN) pada Aplikasi Berbasis Web Menggunakan Flask". Aplikasi ini dapat mendeteksi berbagai jenis buah menggunakan model Deep Learning.
