@@ -18,3 +18,6 @@ Thumbs.db
 
 # Trained Models
 *.h5
+
+# Deployment scripts (contains sensitive logic)
+upload_hf.py
