@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+
+{% block title %}Hasil Prediksi - AI Fruit Classifier{% endblock %}
+
+{% block content %}
+<div class="container py-5 flex-grow-1 d-flex align-items-center justify-content-center">
+    <div class="row w-100 justify-content-center">
+        <div class="col-md-10 col-lg-8">
+            <div class="card border-0 rounded-4 result-card animate-fade-in-up">
+                
+                <!-- Header Card -->
+                <div class="bg-gradient-custom text-white p-4 text-center position-relative overflow-hidden">
+                    <div class="position-absolute top-0 start-0 w-100 h-100 bg-white opacity-10"></div>
+                    <h3 class="mb-0 fw-bold position-relative z-1"><i class="fa-solid fa-check-circle me-2"></i>Hasil Analisis</h3>
+                </div>
+                
+                <div class="card-body p-4 p-md-5">
+                    <div class="row align-items-center">
+                        
+                        <!-- Gambar yang Diupload -->
+                        <div class="col-sm-5 text-center mb-4 mb-sm-0 animate-fade-in-scale delay-100">
+                            <div class="image-wrapper rounded-4 shadow-sm border p-2 bg-white">
+                                <img src="{{ url_for('static', filename=image_path) }}" alt="Uploaded Image" class="img-fluid object-fit-cover w-100 rounded-3" style="max-height: 280px;">
+                            </div>
+                        </div>
+                        
+                        <!-- Detail Prediksi -->
+                        <div class="col-sm-7">
+                            <div class="prediction-details ps-sm-4 animate-fade-in-up delay-200">
+                                <span class="badge bg-primary bg-opacity-10 text-primary px-3 py-2 rounded-pill mb-3 fw-semibold">Analisis Selesai</span>
+                                <h6 class="text-muted text-uppercase fw-bold letter-spacing-1 mb-1">Terdeteksi Sebagai:</h6>
+                                <h2 class="display-5 fw-bold text-gradient mb-4">{{ prediction }}</h2>
+                                
+                                <div class="confidence-box bg-light rounded-4 p-4 mb-4 border-start border-5 border-success shadow-sm">
+                                    <div class="d-flex justify-content-between align-items-center mb-2">
+                                        <h6 class="mb-0 text-dark fw-bold">Tingkat Kepercayaan</h6>
+                                        <h4 class="mb-0 text-success fw-bold">{{ confidence }}%</h4>
+                                    </div>
+                                    <div class="progress rounded-pill bg-secondary bg-opacity-25" style="height: 12px;">
+                                        <!-- Menambahkan class progress-bar-animated-custom dan atribut data-width -->
+                                        <div class="progress-bar bg-success rounded-pill progress-bar-animated-custom" role="progressbar" data-width="{{ confidence }}%" aria-valuenow="{{ confidence }}" aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>
+                                </div>
+                                
+                                <a href="{{ url_for('index') }}" class="btn btn-outline-primary btn-lg w-100 rounded-pill fw-bold py-3 mt-2">
+                                    <i class="fa-solid fa-arrow-rotate-left me-2"></i>Coba Gambar Lain
+                                </a>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

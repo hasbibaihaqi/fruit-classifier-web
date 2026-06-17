@@ -1,0 +1,20 @@
+# Virtual Environment
+venv/
+env/
+
+# Python Cache
+__pycache__/
+*.pyc
+
+# Folder Dataset (Sangat besar dan tidak dibutuhkan untuk deployment web)
+training/dataset/
+
+# File Gambar Hasil Testing
+static/uploads/*
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# Trained Models
+*.h5

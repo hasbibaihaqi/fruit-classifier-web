@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+
+{% block title %}Beranda - AI Fruit Classifier{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="hero-section text-center py-5 text-white bg-gradient-custom mb-5">
+    <div class="container py-5 position-relative z-1">
+        <h1 class="display-4 fw-bold mb-3 animate-fade-in-up">Kenali Buah dengan <span class="text-warning">AI</span></h1>
+        <p class="lead mb-4 animate-fade-in-up delay-100">Unggah gambar buah dan biarkan model Deep Learning kami mendeteksinya dengan cepat dan akurat.</p>
+    </div>
+</section>
+
+<!-- Upload Section -->
+<section class="container mb-5 flex-grow-1 animate-fade-in-up delay-200">
+    <div class="row justify-content-center mt-n5 position-relative z-1">
+        <div class="col-md-8 col-lg-6">
+            <div class="card border-0 rounded-4 upload-card">
+                <div class="card-body p-5">
+                    
+                    {% if error %}
+                    <div class="alert alert-danger alert-dismissible fade show animate-fade-in-scale" role="alert">
+                        <i class="fa-solid fa-triangle-exclamation me-2"></i> {{ error }}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                    {% endif %}
+
+                    <form action="{{ url_for('predict') }}" method="POST" enctype="multipart/form-data" id="uploadForm">
+                        <div class="text-center mb-4">
+                            <h4 class="fw-bold text-dark mb-3">Upload Gambar Buah</h4>
+                            
+                            <!-- Area Drag & Drop / Preview -->
+                            <div class="upload-area rounded-4 p-4 text-center position-relative cursor-pointer" id="dropZone">
+                                <input type="file" name="file" id="fileInput" class="position-absolute w-100 h-100 opacity-0 cursor-pointer" accept=".png, .jpg, .jpeg" required>
+                                
+                                <div id="uploadPrompt" class="transition-all">
+                                    <div class="icon-circle bg-white shadow-sm rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 80px; height: 80px;">
+                                        <i class="fa-solid fa-cloud-arrow-up fa-2x text-primary"></i>
+                                    </div>
+                                    <h5 class="fw-bold">Pilih atau Tarik gambar ke sini</h5>
+                                    <p class="text-muted small mb-0">Format didukung: JPG, JPEG, PNG</p>
+                                </div>
+                                
+                                <div id="imagePreviewContainer" class="d-none animate-fade-in-scale">
+                                    <div class="image-wrapper rounded-3 shadow-sm mx-auto" style="max-width: 250px;">
+                                        <img id="imagePreview" src="#" alt="Preview" class="img-fluid max-h-250 w-100 object-fit-cover">
+                                    </div>
+                                    <button type="button" class="btn btn-sm btn-danger position-absolute top-0 end-0 m-2 rounded-circle shadow" id="removeImageBtn" style="z-index: 20;">
+                                        <i class="fa-solid fa-times"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Tombol Prediksi -->
+                        <div class="d-grid gap-2 mt-4">
+                            <button type="submit" class="btn btn-primary btn-lg rounded-pill fw-bold shadow-sm py-3" id="predictBtn" disabled>
+                                <span class="predict-text"><i class="fa-solid fa-wand-magic-sparkles me-2"></i>Prediksi Sekarang</span>
+                                <span class="spinner-border spinner-border-sm d-none" role="status" aria-hidden="true" id="loadingSpinner"></span>
+                                <span class="loading-text d-none ms-2">Memproses Gambar...</span>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
