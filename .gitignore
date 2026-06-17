@@ -18,6 +18,7 @@ Thumbs.db
 
 # Trained Models
 *.h5
+!models/fruit_model.h5
 
 # Deployment scripts (contains sensitive logic)
 upload_hf.py
